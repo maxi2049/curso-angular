@@ -29,7 +29,7 @@ export class GifsService {
       this._historial = this._historial.splice(0,10);
     }
 
-    this.http.get<RespuestaBusquedaGIF>( `https://api.giphy.com/v1/gifs/search?api_key=k038mQpuWge9wh6idbsFL6Cr0VKOwU9j&q=${ terminoBusqueda} z&limit=10`)
+    this.http.get<RespuestaBusquedaGIF>( `https://api.giphy.com/v1/gifs/search?api_key=k038mQpuWge9wh6idbsFL6Cr0VKOwU9j&q=${ terminoBusqueda}&limit=10`)
       .subscribe( (resp ) => {
         console.log( resp.data );
         this.resultados = resp.data;
