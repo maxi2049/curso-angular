@@ -9,6 +9,7 @@
 
     <a 
     *ngFor="let parametroBus of historial"
+    (click)="buscar( parametroBus )"
     href="#" 
     class="list-group-item list-group-item-action">
       {{ parametroBus | titlecase}}
