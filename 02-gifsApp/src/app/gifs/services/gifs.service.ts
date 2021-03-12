@@ -18,7 +18,14 @@ export class GifsService {
   }
 
 
-  constructor( private http: HttpClient ) {}
+  constructor( private http: HttpClient ) {
+
+    this._historial = JSON.parse( localStorage.getItem( 'historial' )! ) || [];
+    // if( localStorage.getItem( 'historial' ) ) {
+    //   this._historial = JSON.parse( localStorage.getItem( 'historial' )! );
+    // }
+
+  }
 
   buscarGifs( terminoBusqueda: string ) {
 
@@ -27,6 +34,8 @@ export class GifsService {
     if(!this._historial.includes( terminoBusqueda )) {
       this._historial.unshift( terminoBusqueda );
       this._historial = this._historial.splice(0,10);
+
+      localStorage.setItem( 'historial', JSON.stringify( this._historial ) )
     }
 
     this.http.get<RespuestaBusquedaGIF>( `https://api.giphy.com/v1/gifs/search?api_key=k038mQpuWge9wh6idbsFL6Cr0VKOwU9j&q=${ terminoBusqueda}&limit=10`)
