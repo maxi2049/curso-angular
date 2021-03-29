@@ -12,6 +12,8 @@ export class PaisService {
 
   constructor( private http: HttpClient ) { }
 
+
+
   buscarPais(terminoBus: string): Observable<Pais[]> {
     
     const url = `${ this.apiUrl }/name/${ terminoBus }`;
@@ -34,4 +36,11 @@ export class PaisService {
     return this.http.get<Pais[]>( url );
   }
 
+  buscarRegion(regionBus: string): Observable<Pais[]> {
+    
+    const url = `${ this.apiUrl }/region/${ regionBus }`;
+
+    return this.http.get<Pais[]>( url );
+  }
+  
 }

@@ -20,7 +20,7 @@
             No se encontró el término de busqueda...
 </div>
 
-<div *ngIf="!hayError" class="row">
+<div *ngIf="capitales.length > 0" class="row">
     <div class="col">
             <app-pais-tabla [paises]="capitales"></app-pais-tabla>
         

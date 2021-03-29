@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+import { Pais } from '../../interfaces/pais.interface';
+import { PaisService } from '../../services/pais.service';
+
 @Component({
   selector: 'app-por-region',
   templateUrl: './por-region.component.html',
@@ -9,8 +12,10 @@ export class PorRegionComponent {
 
   regiones: string[] = ['africa', 'americas', 'asia', 'europe', 'oceania'];
   regionActiva: string = '';
+  paises: Pais[] = [];
+  
 
-  constructor() { }
+  constructor(private paisService: PaisService) { }
 
 
   getClaseCSS(region: string): string {
@@ -18,7 +23,16 @@ export class PorRegionComponent {
   }
 
   activarRegion(region: string) {
+    
+    if( region === this.regionActiva ){
+      return;
+    }
+    
     this.regionActiva = region;
+    this.paises = [];
+
+    this.paisService.buscarRegion( region )
+      .subscribe(paises => this.paises = paises);
   }
 
 }
